@@ -4,45 +4,49 @@ require 'pony'
 
 
 
-
 get "/" do
-  erb :main                
+  @active1='class="active"'
+  @title='Main'
+  erb :main               
 end
 get "/biography" do
+  @active2='class="active"'
+  @title='Bio'
   erb :biography          
 end
-get "/about" do
-  erb :about              
-end
 get "/hobby" do
+  @active3='class="active"'
+   @title='hobby'
   erb :hobby             
 end
+get "/about" do
+  @active4='class="active"'
+   @title='about'
+  erb :about              
+end
 get "/contact" do
+  @active5='class="active"'
+   @title='contact'
   erb :contact              
 end
-
 post '/contact' do
+  
   options = {
     :to => params[:email],
-    :from => 'geedisgood72@gmail.com',
+    :from => 'put your email',
     :subject => 'Test',
     :body => 'Test Text',
-    :html_body => params[:text],
+    :html_body => params[:message],
     :via => :smtp,
     :via_options => {
       :address => 'smtp.gmail.com',
       :port => 587,
       :enable_starttls_auto => true,
-      :user_name => 'geedisgood72@gmail.com',
-      :password => 'greedisgood',
+      :user_name => 'put your email',
+      :password => 'put your password',
       :authentication => :plain,
       :domain => 'localhost'
     }
   }
   Pony.mail(options)
-  redirect '/contact'
-  end
-
- 
-
- 
+end
