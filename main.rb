@@ -34,8 +34,7 @@ post '/contact' do
   options = {
     :to => params[:email],
     :from => 'put your email',
-    :subject => 'Test',
-    :body => 'Test Text',
+    :subject => params[:name],
     :html_body => params[:message],
     :via => :smtp,
     :via_options => {
