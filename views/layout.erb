@@ -22,11 +22,10 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li <%= @active1 %>><a href="/">Main</a></li>
-            <li <%= @active2 %>><a href="biography">Biography</a></li>
-            <li <%= @active3 %>><a href="hobby">My hobby</a></li>
-            <li <%= @active4 %>><a href="about">About me</a></li>
-            <li <%= @active5 %>><a href="contact">Contact</a></li>
+            <li <% if request.path['biography'] %> class="active" <% end %>><a href="/biography">Biography</a></li>
+            <li <% if request.path['hobby'] %> class="active" <% end %>><a href="/hobby">My hobby</a></li>
+            <li <% if request.path['about'] %> class="active" <% end %>><a href="/about">About me</a></li>
+            <li <% if request.path['contact'] %> class="active" <% end %>><a href="/contact">Contact</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -36,7 +35,7 @@
         <div class="span8"><%= yield %></div>
       </div>
     </div><!-- /.container -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jqBootstrapValidation.js"></script>
     <script src="/js/vendor/contact_me.js"></script>
