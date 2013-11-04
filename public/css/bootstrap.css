@@ -6811,6 +6811,13 @@ td.visible-print {
 .msg {
   margin-top: 110px;
 }
-.image{
-  margin-top: 100px;
+.reg{
+  margin-left: 700px;
+  margin-top: 12px;
 }
+.reg1{
+  margin-left: 1000px;
+  margin-top: 12px;
+}
+
+

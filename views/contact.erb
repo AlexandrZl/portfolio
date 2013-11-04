@@ -27,17 +27,17 @@
               </div>                  
                <div id="success"> </div> 
             <button type="submit" class="btn btn-primary pull-right">Send</button><br />
+            <% if @errors.any? %>
+              <% @errors.each do |error| %>
+                <div class="alert alert-error alert-block">
+                  <h4><%= error%></h4>
+                </div>
+              <% end %> 
+            <% end %> 
+
           </form>
         </div>
       </div>
     </div>
 </div>
 
- <% if @errors.any? %>
-              <% @errors.each do |error| %>
-                <div class="alert alert-error alert-block">
-                  <button type="button" class="close" data-dismiss="alert">x</button>
-                  <h4><%= error%></h4>
-                </div>
-              <% end %>  
-              <% end %> 

@@ -26,6 +26,22 @@
             <li <% if request.path['hobby'] %> class="active" <% end %>><a href="/hobby">My hobby</a></li>
             <li <% if request.path['about'] %> class="active" <% end %>><a href="/about">About me</a></li>
             <li <% if request.path['contact'] %> class="active" <% end %>><a href="/contact">Contact</a></li>
+           <% if admin? %>  
+           <div class="reg1">
+           <form class="form-inline" action="/logout" method="post" >
+              <button type="submit" class="btn" >Sign out</button>
+              <p class="text-info">Welcome!</p>
+             </form>
+           </div>
+           </div>
+           <% else %>
+           <div class="reg" >   
+             <form class="form-inline" action="login" method="post">
+               <input  name="username" type="text" class="input-small" placeholder="Name">
+               <input type="password" name="password" class="input-small" placeholder="password">
+               <button type="submit" class="btn" >Enter</button>
+             </form>
+           <% end %>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -35,9 +51,9 @@
         <div class="span8"><%= yield %></div>
       </div>
     </div><!-- /.container -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
+    <!--<script src="/js/bootstrap.min.js"></script>
     <script src="/js/jqBootstrapValidation.js"></script>
-    <script src="/js/vendor/contact_me.js"></script>
+    <script src="/js/vendor/contact_me.js"></script>-->
   </body>
 </html>
