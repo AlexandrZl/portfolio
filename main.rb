@@ -68,8 +68,8 @@ post '/contact' do
       :address => 'smtp.gmail.com',
       :port => 587,
       :enable_starttls_auto => true,
-      :user_name => 'geedisgood72@gmail.com',
-      :password => 'uthfrkcsyptdcf',
+      :user_name => 'puts your email',
+      :password => 'password',
       :authentication => :plain,
       :domain => 'localhost'
     }
