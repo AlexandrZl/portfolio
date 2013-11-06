@@ -3,6 +3,23 @@ require 'rubygems'
 require 'pony'
 require_relative './helpers/validate'
 
+configure do
+  enable :sessions
+  set :session_secret, 'secret'
+end
+
+post '/login' do
+  session[:foo] = params[:username], params[:password]
+  redirect '/'
+end
+
+
+post '/logout' do
+  session.clear
+  redirect '/'
+end 
+
+
 get "/" do
   @title='Main'
   erb :main      
@@ -23,38 +40,23 @@ get "/about" do
   erb :about              
 end
 
-get "/contact" do
-   @title='contact'
-  erb :contact              
-end
-get "/success" do
-  erb :success              
-end
-
 before '/contact' do
   @errors = []
 end
 
-set :username,'user'
-set :token,'sfdgfdg44425'
-set :password,'resu'
-
-helpers do
-  def admin? ; request.cookies[settings.username] == settings.token ; end
-  def protected! ; halt [ 401, 'Not Authorized' ] unless admin? ; end
+get "/contact" do
+   @title='contact'
+  erb :contact              
 end
 
-post '/login' do
-  if params['username']==settings.username&&params['password']==settings.password
-      response.set_cookie(settings.username,settings.token) 
-      redirect '/'
-    else
-      "Username or Password incorrect"
-    end
+get "/success" do
+  erb :success              
 end
 
-post('/logout'){ response.set_cookie(settings.username, false); redirect "/" }
-
+get "/reg" do
+  @title='Sign up'
+  erb :register      
+end
 
 post '/contact' do
   validate
