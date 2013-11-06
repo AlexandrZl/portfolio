@@ -2,6 +2,7 @@ require 'sinatra'
 require 'rubygems'
 require 'pony'
 require_relative './helpers/validate'
+helpers Valid
 
 configure do
   enable :sessions
@@ -13,12 +14,10 @@ post '/login' do
   redirect '/'
 end
 
-
 post '/logout' do
   session.clear
   redirect '/'
 end 
-
 
 get "/" do
   @title='Main'
@@ -59,7 +58,7 @@ get "/reg" do
 end
 
 post '/contact' do
-  validate
+  validate            #method from Helpers with module Valid
   unless @errors.any?
   options = {
     :to => params[:email],
