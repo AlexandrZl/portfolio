@@ -1,8 +1,16 @@
 require 'sinatra'
 require 'rubygems'
 require 'pony'
+require "sinatra/activerecord"
 require_relative './helpers/validate'
+
 helpers Valid
+ 
+set :database, "sqlite3:///user.db"
+ 
+class User < ActiveRecord::Base
+end
+
 
 configure do
   enable :sessions
@@ -10,9 +18,28 @@ configure do
 end
 
 post '/login' do
-  session[:foo] = params[:username], params[:password]
-  redirect '/'
+  session[:foo] = params[:username], params[:password], params[:email]
+  @user = User.new(:name => params[:username], :password => params[:password], :email => params[:email])
+  if @user.save
+    redirect "/"
+  else
+    redirect '/hobby'
+  end
 end
+
+post '/sign' do
+  if params[:nameuser] == User.find(:all)
+    session[:foo]=params[:name], params[:password]
+    redirect "/"
+  else 
+    redirect "/notaunt"
+  end
+  end
+
+get '/notaunt' do
+  erb :error
+end
+
 
 post '/logout' do
   session.clear
